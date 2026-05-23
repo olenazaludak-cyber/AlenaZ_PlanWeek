@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мой недельный план</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page" aria-label="Приложение недельного планирования">
+    <div class="app-message" id="app-message" role="status" aria-live="polite" hidden></div>
+
+    <header class="topbar">
+      <div>
+        <h1>Мой недельный план</h1>
+        <p class="week-range" id="week-range-text">25–31 мая</p>
+      </div>
+      <nav class="week-nav" aria-label="Навигация по неделям">
+        <button class="week-nav-btn" id="previous-week-button" type="button" aria-label="Показать предыдущую неделю">←</button>
+        <button class="week-nav-btn week-today-btn" id="current-week-button" type="button">Сегодня</button>
+        <button class="week-nav-btn" id="next-week-button" type="button" aria-label="Показать следующую неделю">→</button>
+      </nav>
+    </header>
+
+    <section class="quote-widget" aria-label="Цитата дня">
+      <h2>Цитата дня</h2>
+      <p id="daily-quote">«Маленькие шаги каждый день делают большие мечты достижимыми.»</p>
+    </section>
+
+    <section class="progress-widget" aria-label="Прогресс недели">
+      <div class="progress-head">
+        <h2>Прогресс недели</h2>
+        <strong>5 из 12 задач</strong>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill"></div>
+      </div>
+      <p class="progress-note">Вы закрыли 42% плана. Отличный темп.</p>
+    </section>
+
+    <section class="task-form" aria-label="Форма создания задачи">
+      <h2>Новая задача</h2>
+      <form id="task-form">
+        <label>
+          Текст задачи
+          <input id="task-title-input" type="text" placeholder="Например: Подготовить отчет по проекту" aria-label="Введите текст задачи">
+        </label>
+        <label>
+          Категория
+          <select id="task-category-select" aria-label="Выбор категории задачи"></select>
+        </label>
+        <fieldset>
+          <legend>Дни недели</legend>
+          <div class="day-picker" aria-label="Выбор дней недели" id="task-day-picker">
+            <label><input type="checkbox" data-day-index="0"> Пн</label>
+            <label><input type="checkbox" data-day-index="1"> Вт</label>
+            <label><input type="checkbox" data-day-index="2"> Ср</label>
+            <label><input type="checkbox" data-day-index="3"> Чт</label>
+            <label><input type="checkbox" data-day-index="4"> Пт</label>
+            <label><input type="checkbox" data-day-index="5"> Сб</label>
+            <label><input type="checkbox" data-day-index="6"> Вс</label>
+          </div>
+        </fieldset>
+        <label class="backlog-toggle">
+          <input id="task-backlog-checkbox" type="checkbox" aria-label="Сразу отправить задачу в бэклог">
+          Отправить сразу в бэклог
+        </label>
+        <p class="form-error" id="task-form-error" role="alert" aria-live="polite"></p>
+        <button class="primary-btn" type="submit" aria-label="Создать задачу">Создать задачу</button>
+      </form>
+    </section>
+
+    <section class="week-grid-section" aria-label="Сетка недели">
+      <h2>Неделя</h2>
+      <p class="week-empty-message" id="week-empty-message" hidden></p>
+      <div class="week-grid">
+        <article class="day-card" data-day-index="0"><header class="day-card-head"><div><h3>Понедельник</h3><p class="day-date"></p></div><div class="day-card-tools"><span class="day-task-count" aria-label="Количество задач">0</span><button class="day-open-btn" type="button" data-action="open-day" aria-label="Открыть подробный просмотр понедельника">Открыть</button></div></header><div class="day-card-body"><div class="task-list" data-day-list="0"></div></div></article>
+        <article class="day-card" data-day-index="1"><header class="day-card-head"><div><h3>Вторник</h3><p class="day-date"></p></div><div class="day-card-tools"><span class="day-task-count" aria-label="Количество задач">0</span><button class="day-open-btn" type="button" data-action="open-day" aria-label="Открыть подробный просмотр вторника">Открыть</button></div></header><div class="day-card-body"><div class="task-list" data-day-list="1"></div></div></article>
+        <article class="day-card" data-day-index="2"><header class="day-card-head"><div><h3>Среда</h3><p class="day-date"></p></div><div class="day-card-tools"><span class="day-task-count" aria-label="Количество задач">0</span><button class="day-open-btn" type="button" data-action="open-day" aria-label="Открыть подробный просмотр среды">Открыть</button></div></header><div class="day-card-body"><div class="task-list" data-day-list="2"></div></div></article>
+        <article class="day-card" data-day-index="3"><header class="day-card-head"><div><h3>Четверг</h3><p class="day-date"></p></div><div class="day-card-tools"><span class="day-task-count" aria-label="Количество задач">0</span><button class="day-open-btn" type="button" data-action="open-day" aria-label="Открыть подробный просмотр четверга">Открыть</button></div></header><div class="day-card-body"><div class="task-list" data-day-list="3"></div></div></article>
+        <article class="day-card" data-day-index="4"><header class="day-card-head"><div><h3>Пятница</h3><p class="day-date"></p></div><div class="day-card-tools"><span class="day-task-count" aria-label="Количество задач">0</span><button class="day-open-btn" type="button" data-action="open-day" aria-label="Открыть подробный просмотр пятницы">Открыть</button></div></header><div class="day-card-body"><div class="task-list" data-day-list="4"></div></div></article>
+        <article class="day-card" data-day-index="5"><header class="day-card-head"><div><h3>Суббота</h3><p class="day-date"></p></div><div class="day-card-tools"><span class="day-task-count" aria-label="Количество задач">0</span><button class="day-open-btn" type="button" data-action="open-day" aria-label="Открыть подробный просмотр субботы">Открыть</button></div></header><div class="day-card-body"><div class="task-list" data-day-list="5"></div></div></article>
+        <article class="day-card" data-day-index="6"><header class="day-card-head"><div><h3>Воскресенье</h3><p class="day-date"></p></div><div class="day-card-tools"><span class="day-task-count" aria-label="Количество задач">0</span><button class="day-open-btn" type="button" data-action="open-day" aria-label="Открыть подробный просмотр воскресенья">Открыть</button></div></header><div class="day-card-body"><div class="task-list" data-day-list="6"></div></div></article>
+      </div>
+    </section>
+
+    <section class="side-panels">
+      <article class="panel backlog" aria-label="Бэклог задач">
+        <h2>Бэклог</h2>
+        <ul id="backlog-list" class="drop-zone" data-drop-type="backlog"></ul>
+      </article>
+
+      <article class="panel categories" aria-label="Панель управления категориями">
+        <h2>Категории</h2>
+        <ul id="category-list"></ul>
+        <p class="category-empty-message" id="category-empty-message" hidden></p>
+        <form id="category-form">
+          <label>
+            Новая категория
+            <input id="category-input" type="text" placeholder="Введите название" aria-label="Введите новую категорию">
+          </label>
+          <p class="form-error" id="category-form-error" role="alert" aria-live="polite"></p>
+          <button class="secondary-btn" type="submit" aria-label="Добавить категорию">Добавить</button>
+        </form>
+      </article>
+    </section>
+
+    <section class="service-zone" aria-label="Сервисная зона">
+      <button class="danger-btn" id="reset-app-button" type="button" aria-label="Полный сброс данных">
+        Полный сброс данных
+      </button>
+    </section>
+
+    <div class="day-modal" id="day-modal" hidden>
+      <div class="day-modal-backdrop" data-action="close-day-modal"></div>
+      <section class="day-modal-panel" role="dialog" aria-modal="true" aria-labelledby="day-modal-title" tabindex="-1">
+        <header class="day-modal-head">
+          <div>
+            <h2 id="day-modal-title">День</h2>
+            <p id="day-modal-date"></p>
+          </div>
+          <button class="day-modal-close" type="button" data-action="close-day-modal" aria-label="Закрыть подробный просмотр дня">×</button>
+        </header>
+        <div class="day-modal-task-list" id="day-modal-task-list"></div>
+      </section>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
